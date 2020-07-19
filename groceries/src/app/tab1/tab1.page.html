@@ -19,13 +19,13 @@
   </ion-list-header> -->
 
   <ion-list>
-    <ion-item-sliding *ngFor="let item of items">
+    <ion-item-sliding *ngFor="let item of items; let i = index">
       <ion-item>
         <ion-label>{{item.name}}</ion-label> <br>
         <p>Qty: {{item.qty}}</p>
       </ion-item>
       <ion-item-options side="end">
-        <ion-button shape="round" color="danger" (click)="deleteItem(item)">
+        <ion-button shape="round" color="danger" (click)="deleteItem(item, i)">
           <ion-icon name="trash-outline"></ion-icon>
           Remove
         </ion-button>

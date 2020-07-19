@@ -33,13 +33,15 @@ export class Tab1Page {
 
   constructor(public toastController: ToastController, public alertController: AlertController) {}
 
-  async deleteItem(item){
+  async deleteItem(item, index){
 
       const toast = await this.toastController.create({
-        message: 'Removed Item - '+item.name,
+        message: 'Removed Item: '+item.name,
         duration: 2000
       });
       await toast.present();
+
+      this.items.splice(index, 1);
   };
 
   async addItem() {
