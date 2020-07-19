@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -30,7 +31,7 @@ export class Tab1Page {
     }
   ];
 
-  constructor(public toastController: ToastController) {}
+  constructor(public toastController: ToastController, public alertController: AlertController) {}
 
   async deleteItem(item){
 
@@ -38,10 +39,43 @@ export class Tab1Page {
         message: 'Removed Item - '+item.name,
         duration: 2000
       });
-      toast.present();
+      await toast.present();
   };
 
-  addItem(){
+  async addItem() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Enter item and quantity',
+      inputs: [
+        {
+          name: 'name',
+          type: 'text',
+          placeholder: 'Item'
+        },
+        {
+          name: 'qty',
+          type: 'number',
+          placeholder: 'Quantity',
+          min: 0,
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Add',
+          handler: (item) => {
+            this.items.push(item)
+          }
+        }
+      ]
+    });
 
-  };
+    await alert.present();
+  }
 }

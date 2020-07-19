@@ -13,13 +13,12 @@
     </ion-toolbar>
   </ion-header> -->
 
-  <ion-list-header>
+  <!-- <ion-list-header>
     <ion-input placeholder="Enter an Item"></ion-input>
     <ion-button shape="round" fill="solid" color="success" (click)="addItem()">Add</ion-button>
-  </ion-list-header>
+  </ion-list-header> -->
 
   <ion-list>
-
     <ion-item-sliding *ngFor="let item of items">
       <ion-item>
         <ion-label>{{item.name}}</ion-label> <br>
@@ -32,8 +31,13 @@
         </ion-button>
       </ion-item-options>
     </ion-item-sliding>
-
-
   </ion-list>
+
+    <!-- fab placed to the top end -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+      <ion-fab-button color="success" (click)="addItem()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 
 </ion-content>
